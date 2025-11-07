@@ -263,13 +263,13 @@
   @apply shadow-light-100 dark:shadow-none;
 }
 
-/* @utility font-space-grotesk {
+@utility font-space-grotesk {
+  font-family: var(--font-space-grotesk), sans-serif;
+} 
+
+/* .font-space-grotesk {
   font-family: var(--font-space-grotesk), sans-serif;
 } */
-
-.font-space-grotesk {
-  font-family: var(--font-space-grotesk), sans-serif;
-}
 
 @utility primary-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);

@@ -18,7 +18,14 @@ const spaceGrotesk = localFont({
 
 
 export const metadata: Metadata = {
-  title: "Hi Ashu",
+  title: "DevFlow",
+  description:
+  `DevFlow is a task management app for developers for asking and answering programming questions.
+  Get help from the community and share your knowledge with others. Explore programming topics,
+  languages, frameworks, mobile development, algorithms, data structures and many more.`,
+  icons: {
+    icon: "/images/site-logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-  <body className={`${inter.className} ${spaceGrotesk.className} antialiased`}>
+      <body
+        className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
