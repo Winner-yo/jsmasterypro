@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { ThemeProvider } from "next-themes";
-import React from "react";
-
+// eslint-disable-next-line import/order
+import React, { ReactNode } from "react";
+import Providers from "./providers";
+import { auth } from "../auth";
 import "./globals.css";
-
-import Navbar from "@/components/navigation/navbar";
 
 const inter = localFont({
   src: "/fonts/InterVF.ttf",
@@ -29,26 +28,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        <Providers session={session ?? undefined}>{children}</Providers>
       </body>
     </html>
   );
 }
+export default RootLayout;
