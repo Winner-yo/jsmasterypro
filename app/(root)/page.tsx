@@ -12,10 +12,13 @@ import ROUTES from "@/constants/routes";
       <form
         className="px-10 pt-[100px]"
         action={async () => {
-        "use server";
-        await signOut({ redirectTo: ROUTES.SIGN_IN });
-      }}>
-        <Button type="submit">Log Out </Button>
+          "use server";
+          await signOut({ redirectTo: ROUTES.SIGN_IN });
+        }}
+      >
+        <Button className="hover:cursor-pointer" type="submit">
+          Log Out{" "}
+        </Button>
       </form>
     </>
   );
