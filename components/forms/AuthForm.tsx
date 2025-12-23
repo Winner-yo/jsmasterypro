@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DefaultValues, FieldValues, Path, useForm } from "react-hook-form";
+import { DefaultValues, FieldValues, Path, useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SubmitHandler } from "react-hook-form";
+
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
 
