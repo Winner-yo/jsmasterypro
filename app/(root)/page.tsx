@@ -1,6 +1,7 @@
 // import { SearchParams} from "next/dist/server/request/search-params";
 import Link from "next/link";
 
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -16,7 +17,12 @@ const questions = [
       { _id: 201, name: "React" },
       { _id: 202, name: "Virtual DOM" },
     ],
-    author: { _id: 301, name: "Alice Rivera" },
+    author: {
+      _id: 301,
+      name: "Alice Rivera",
+      image:
+        "https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg",
+    },
     upvotes: 42,
     answers: 5,
     views: 1200,
@@ -31,7 +37,12 @@ const questions = [
       { _id: 203, name: "Next.js" },
       { _id: 204, name: "Data Fetching" },
     ],
-    author: { _id: 302, name: "Bob Lee" },
+    author: {
+      _id: 302,
+      name: "Bob Lee",
+      image:
+        "https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg",
+    },
     upvotes: 28,
     answers: 3,
     views: 860,
@@ -46,7 +57,12 @@ const questions = [
       { _id: 205, name: "JavaScript" },
       { _id: 206, name: "Type Coercion" },
     ],
-    author: { _id: 303, name: "Carol Nguyen" },
+    author: {
+      _id: 303,
+      name: "Carol Nguyen",
+      image:
+        "https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg",
+    },
     upvotes: 16,
     answers: 4,
     views: 540,
@@ -61,7 +77,12 @@ const questions = [
       { _id: 207, name: "TypeScript" },
       { _id: 208, name: "Generics" },
     ],
-    author: { _id: 304, name: "Daniel Kim" },
+    author: {
+      _id: 304,
+      name: "Daniel Kim",
+        image:
+          "https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg",
+    },
     upvotes: 34,
     answers: 6,
     views: 980,
@@ -110,7 +131,8 @@ const Home = async ({ searchParams }: SearchParams) => {
       <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-5">
         {filterQuestions.map((question) => (
-          <h1 key={question._id}>{question.title}</h1>
+          <QuestionCard key={question._id} question={question} />
+          
         ))}
       </div>
     </>
