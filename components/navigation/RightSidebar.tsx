@@ -1,7 +1,9 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+
 import ROUTES from '@/constants/routes'
-import Image from 'next/image'
+
 import TagCard from '../cards/TagCard'
 const hotQuestions = [
     {_id: 1,title: "How to create a Next.js project?"},

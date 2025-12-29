@@ -1,12 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { sidebarLinks } from '@/constants/index'
 import Link from 'next/link'
 import{usePathname} from 'next/navigation'
 import React from 'react'
-import { cn } from '@/lib/utils'
+
 import { SheetClose } from '@/components/ui/sheet'
+import { sidebarLinks } from '@/constants/index'
+import { cn } from '@/lib/utils'
 
 const NavLinks = ({ isMobileNav=false } : {isMobileNav?: 
     boolean}) => {
