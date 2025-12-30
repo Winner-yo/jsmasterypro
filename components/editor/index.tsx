@@ -92,7 +92,7 @@ const Editor = ({
       markdown={initialMarkdownRef.current}
       ref={activeEditorRef}
       className="background-light800_dark200 light-border-2
-          markdown-editor dark-editor w-full border"
+          markdown-editor dark-editor w-full border grid"
       onChange={handleChange}
       plugins={[
         // Example Plugin Usage

@@ -5,9 +5,11 @@ import { MDXEditorMethods } from '@mdxeditor/editor';
 import dynamic from 'next/dynamic';
 import React, { useRef } from 'react'
 import { useForm } from 'react-hook-form'
+import z from 'zod';
 
 import { AskQuestionSchema } from '@/lib/validations';
 
+import TagCard from '../cards/TagCard';
 import { Button } from '../ui/button';
 import {
   Form,
@@ -20,13 +22,14 @@ import {
 } from "../ui/form";
 import { Input } from '../ui/input';
 
+
 const Editor = dynamic(() => import("@/components/editor"), {
   // Make sure we turn SSR off
   ssr: false,
 });
 const QuestionForm = () => {
   const editorRef = useRef<MDXEditorMethods>(null);
-  const form = useForm({
+  const form = useForm<z.infer<typeof AskQuestionSchema>>({
     resolver: zodResolver(AskQuestionSchema),
     defaultValues: {
       title: '',
@@ -37,6 +40,7 @@ const QuestionForm = () => {
   const handleInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
     field: { value: string[] }) => {
+    console.log(field, e);
     if (e.key === 'Enter') {
       e.preventDefault();
       const tagInput = e.currentTarget.value.trim();
@@ -59,7 +63,21 @@ const QuestionForm = () => {
       }
     }
   };
-  const handleCreateQuestion = () => {}
+  const handleTagRemove = (tag: string, field: { value: string[] }) => {
+    const newTags = field.value.filter((t) => t !== tag);
+    form.setValue('tags', newTags);
+    if(newTags.length === 0){
+      form.setError('tags', {
+        type: 'manual',
+        message: 'Please add at least one tag',
+      });
+    }
+    
+  }
+  const handleCreateQuestion = (data: z.infer<typeof
+    AskQuestionSchema>) => {
+    console.log(data);
+     }
   return (
     <Form {...form}>
       <form
@@ -150,11 +168,24 @@ const QuestionForm = () => {
                   border"
                     placeholder='Add Tags...'
                   onKeyDown={(e) => handleInputKeyDown(e,field)}
-                  {...field}
+                  
                   />
-                 {field.value.map((tag:string) => (
-                  <span key={tag}>{tag}</span>
-                 ))}
+                  
+                  {field.value.length > 0 && (
+                    <div className='flex-start mt-2.5 flex-wrap
+                    gap-2.5'>
+                      {field?.value?.map((tag: string) => 
+                        <TagCard
+                          key={tag}
+                          _id={tag}
+                          name={tag}
+                          compact
+                          remove
+                          isButton
+                          handleRemove={() => handleTagRemove
+                            (tag, field)} />)}
+                    </div>
+                 )}
                 </div>
               </FormControl>
               <FormDescription
