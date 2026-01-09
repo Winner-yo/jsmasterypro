@@ -39,25 +39,26 @@ class ValidationError extends RequestError {
 
 
 class NotFoundError extends RequestError {
-    constructor(message: string) {
-        super(404, message)
+    constructor(resource: string) {
+        super(404, `${resource} not found`)
         this.name = 'NotFoundError'
     }
 }
 
+class ForbiddenError extends RequestError {
+  constructor(message: string = "Forbidden") {
+    super(403, message);
+    this.name = "ForbiddenError";
+  }
+}
+
 class UnauthorizedError extends RequestError {
-    constructor(message: string) {
+    constructor(message: string = "Unauthorized") {
         super(401, message)
         this.name = 'UnauthorizedError'
     }
 }
 
-class ForbiddenError extends RequestError {
-    constructor(message: string) {
-        super(403, message)
-        this.name = 'ForbiddenError'
-    }
-}
 
 
 export { RequestError, ValidationError, NotFoundError, UnauthorizedError, ForbiddenError }
