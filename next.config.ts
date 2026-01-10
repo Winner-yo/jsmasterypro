@@ -3,6 +3,7 @@ import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  serverExternalPackages:["pino","pino-pretty"],
   
   // Set the turbopack root to this project directory so Next.js doesn't
   // incorrectly infer the workspace root when there are multiple lockfiles
