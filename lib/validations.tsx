@@ -60,3 +60,22 @@ export const AskQuestionSchema = z.object({
         .min(1, { message: "Please select at least one tag", })
         .max(5, { message: "You can select at most five tags", }),
 });
+
+export const UserSchema = z.object({
+    name: z.string().min(2, { message: "Name is required" }),
+    username: z
+        .string()
+        .min(3, { message: "Username must be at least 3 characters long" }),
+        email: z.string().email({ message: "Please enter a valid email address" }),
+    bio: z.string().optional(),
+    image: z
+        .string()
+        .url({ message: "Please enter a valid URL" })
+        .optional(),
+    location: z.string().optional(),
+    portfolio: z
+        .string()
+        .url({ message: "Please enter a valid URL" })
+        .optional(),
+    reputation: z.number().optional(),
+});
