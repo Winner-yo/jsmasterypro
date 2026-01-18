@@ -29,6 +29,16 @@ const handleError = (
     error: unknown,
     responseType: ResponseType = "server"
 ) => {
+    if (
+      error instanceof Error &&
+      (error as { name?: string }).name === "CastError"
+    ) {
+      logger.error(
+        { err: error },
+        `${responseType.toUpperCase()} Error: ${error.message}`
+      );
+      return formatResponse(responseType, 400, "Invalid id");
+    }
     if (error instanceof RequestError) {
         logger.error({ err: error },
             `${responseType.toUpperCase()} Error: ${error.message}`
